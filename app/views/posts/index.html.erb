@@ -3,6 +3,9 @@
   <p class="post-text"><%= post.text %></p>
   <ul>
     <li>
+      <%= link_to '詳細', post_path(post.id), method: :get %>
+    </li>
+    <li>
       <%= link_to '編集', edit_post_path(post.id), method: :get %>
     </li>
     <li>
