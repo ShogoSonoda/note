@@ -1,8 +1,15 @@
-<div class="posts">
-  <% @posts.each do |post| %>
-    <div class="post">
-      <h3 class="post-title"><%= post.title %></h3>
-      <p class="post-text"><%= post.text %></p>
-    </div>
-  <% end %>
-</div>
+<% @posts.each do |post| %>
+  <h3 class="post-title"><%= post.title %></h3>
+  <p class="post-text"><%= post.text %></p>
+  <ul>
+    <li>
+      <%= link_to '詳細', post_path(post.id), method: :get %>
+    </li>
+    <li>
+      <%= link_to '編集', edit_post_path(post.id), method: :get %>
+    </li>
+    <li>
+      <%= link_to '削除', post_path(post.id), method: :delete %>
+    </li>
+  </ul>
+<% end %>
