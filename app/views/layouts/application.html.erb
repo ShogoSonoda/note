@@ -16,9 +16,12 @@
           <h1 class=sitelogo>Note</h1>
         </div>
         <div class="vartop-right">
-          <h2>新規登録</h2>
-          <h2>ログイン</h2>
-          <h2>ログアウト</h2>
+          <% if user_signed_in? %>
+            <%= link_to "ログアウト", destroy_user_session_path, method: :delete %>
+          <% else %>
+            <%= link_to "新規登録", new_user_registration_path %>
+            <%= link_to "ログイン", new_user_session_path %>
+          <% end %>
         <div>
       </div>
     </header>
