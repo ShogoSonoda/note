@@ -1,8 +1,9 @@
-<% @posts.each do |post| %>
-  <h3>投稿者：<a href="/posts/<%= post.user.id %>"><%= post.user.nickname %><a></h3>
-  <h3 class="post-title"><%= post.title %></h3>
-  <p class="post-text"><%= post.text %></p>
-  <ul>
+<div class="contents row">
+  <p><%= @nickname %>さんの投稿一覧</p>
+  <% @posts.each do |post| %>
+    <h3><%= post.title %></h3>
+    <p><%= post.text %></p>
+    <ul>
     <li>
       <%= link_to '詳細', post_path(post.id), method: :get %>
     </li>
@@ -13,4 +14,5 @@
       <%= link_to '削除', post_path(post.id), method: :delete %>
     </li>
   </ul>
-<% end %>
+  <% end %>
+</div>

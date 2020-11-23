@@ -3,4 +3,5 @@ class Post < ApplicationRecord
     validates :title
     validates :text
   end
+  belongs_to :user
 end
