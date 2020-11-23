@@ -1,3 +1,8 @@
-<h1>こんにちは</h1>
-<h1>こんにちは</h1>
-<h1>こんにちは</h1>
+<div class="posts">
+  <% @posts.each do |post| %>
+    <div class="post">
+      <h3 class="post-title"><%= post.title %></h3>
+      <p class="post-text"><%= post.text %></p>
+    </div>
+  <% end %>
+</div>
