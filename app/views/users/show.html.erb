@@ -1,0 +1,19 @@
+<div class="contents row">
+  <h3><%= @nickname %>さんの投稿一覧</h3>
+  <h4><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></h4>
+  <% @posts.each do |post| %>
+    <h3><%= post.title %></h3>
+    <p><%= post.text %></p>
+    <ul>
+    <li>
+      <%= link_to '詳細', post_path(post.id), method: :get %>
+    </li>
+    <li>
+      <%= link_to '編集', edit_post_path(post.id), method: :get %>
+    </li>
+    <li>
+      <%= link_to '削除', post_path(post.id), method: :delete %>
+    </li>
+  </ul>
+  <% end %>
+</div>

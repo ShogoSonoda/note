@@ -1,4 +1,5 @@
 <% @posts.each do |post| %>
+  <h3>投稿者：<%= post.user.nickname %></h3>
   <h3 class="post-title"><%= post.title %></h3>
   <p class="post-text"><%= post.text %></p>
   <ul>
