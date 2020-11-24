@@ -1,0 +1,9 @@
+<%= form_with model: @user do |form| %>
+  <p>名前を変更できます</p>
+  <%= form.text_field :nickname %>
+
+  <p>自己紹介文を入力できます</p>
+  <%= form.text_area :introduction %>
+
+  <%= form.submit "プロフィールの更新" %>
+<% end %>
