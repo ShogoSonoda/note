@@ -1,7 +1,2 @@
-<div class="article">
-  <%= form_with(model: @post, local: true) do |form| %>
-    <%= form.text_field :title, placeholder: "記事タイトル" %>
-    <%= form.text_field :text, placeholder: "テキスト" %>
-    <%= form.submit "投稿"%>
-  <% end %>
-</div>
+<%= render 'shared/error_messages', model: @post %>
+<%= render partial: 'form', locals: { post: @post } %>

@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
-  with_options presence: true do
-    validates :title
-    validates :text
-  end
   belongs_to :user
+
+    validates :title, presence: true
+    validates :text, presence: true
+    validates :user_id, presence:true
 end

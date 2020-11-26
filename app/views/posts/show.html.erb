@@ -1,11 +1,1 @@
-<h3><%= @post.user.nickname %>さんの投稿一覧</h3>
-<h3 class="post-title"><%= @post.title %></h3>
-<p class="post-text"><%= @post.text %></p>
-<ul>
-  <li>
-    <%= link_to '編集', edit_post_path(@post.id), method: :get %>
-  </li>
-  <li>
-    <%= link_to '削除', post_path(@post.id), method: :delete %>
-  </li>
-</ul>
+<%= render partial: 'post', locals: { post: @post } %>
