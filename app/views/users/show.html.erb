@@ -1,6 +1,7 @@
 <div class="contents row">
-  <h3><%= @nickname %>さんの投稿一覧</h3>
   <h4><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></h4>
+  <h3>紹介文</h3>
+  <p><%= @user.introduction %></p>
   <% @posts.each do |post| %>
     <%= render partial: 'posts/post', locals: { post: post } %>
   <% end %>
