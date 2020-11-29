@@ -1,7 +1,7 @@
 class CommetsController < ApplicationController
   def create
     comment = Commet.create(comment_params)
-    redirect_to post_path(params[:post_id])
+    redirect_to "/posts/#{comment.post.id}"
   end
 
   private
