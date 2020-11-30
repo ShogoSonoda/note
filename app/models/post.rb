@@ -1,7 +1,7 @@
 class Post < ApplicationRecord
   belongs_to :user
   has_many :comments
-  has_many :liked_users, through: :likes, source: :user
+  has_many :likes
 
   with_options presence: true do
     validates :title
@@ -17,7 +17,7 @@ class Post < ApplicationRecord
     end
   end
 
-  def already_liked?(post)
-    self.likes.exists?(post_id: post.id)
+  def liked_by?(user)
+    likes.where(user_id: user.id).exists?
   end
 end

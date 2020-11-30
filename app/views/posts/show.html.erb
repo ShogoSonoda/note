@@ -1,4 +1,11 @@
 <%= render partial: 'post', locals: { post: @post } %>
+
+<% if @post.liked_by?(current_user) %>
+  <p><span>いいね解除: </span><%= link_to @post.likes.count, post_likes_path(@post.id), method: :delete %></p>
+<% else %>
+  <p><span>いいね登録: </span><%= link_to @post.likes.count, post_likes_path(@post.id), method: :post %></p>
+<% end %>
+
 <div class="">
   <% if user_signed_in? %>
     <%= form_with(model: [@post, @comment], local: true) do |form| %>
