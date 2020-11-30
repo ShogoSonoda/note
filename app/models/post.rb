@@ -16,4 +16,8 @@ class Post < ApplicationRecord
       Post.all
     end
   end
+
+  def already_liked?(post)
+    self.likes.exists?(post_id: post.id)
+  end
 end
