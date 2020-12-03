@@ -15,6 +15,16 @@ class UsersController < ApplicationController
     redirect_to action: :show
   end
 
+  def follows
+    user = User.find(params[:id])
+    @users = user.followings
+  end
+
+  def followers
+    user = User.find(params[:id])
+    @user = user.followers
+  end
+
   private
 
   def user_params
