@@ -11,6 +11,14 @@
     <p><span>いいね登録: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :post %></p>
   <% end %>
 
+  <% if current_user != post.user %>
+    <% if post.user.followed_by?(current_user) %>
+      <p><%= link_to "フォロー済み", user_relationships_path(post.user.id), method: :delete %></p>
+    <% else %>
+      <p><%= link_to "フォローする", user_relationships_path(post.user.id), method: :post %></p>
+    <% end %>
+  <% end %>
+
   <% if user_signed_in? && current_user.id == post.user_id %>
     <li>
       <%= link_to '編集', edit_post_path(post.id), method: :get %>
