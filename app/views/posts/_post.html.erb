@@ -13,13 +13,7 @@
       <p><span>いいね登録: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :post %></p>
     <% end %>
 
-    <% if current_user != post.user %>
-      <% if post.user.followed_by?(current_user) %>
-        <p><%= link_to "フォロー済み", user_relationships_path(post.user.id), method: :delete %></p>
-      <% else %>
-        <p><%= link_to "フォローする", user_relationships_path(post.user.id), method: :post %></p>
-      <% end %>
-    <% end %>
+    <%= render partial: 'users/follow', locals: { user: post.user } %>
 
   <% else %>
     <p><span>いいね数: </span><%= post.likes.count %></p>
