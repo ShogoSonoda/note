@@ -1,0 +1,4 @@
+<% @users.each do |user| %>
+  <p><span>名前: </span><%= link_to user.nickname, user_path(user.id) %></p>
+    <%= render partial: 'follow', locals: { user: user } %>
+<% end %>

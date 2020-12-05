@@ -2,9 +2,15 @@
   <h4><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></h4>
   <h3>紹介文</h3>
   <p><%= @user.introduction %></p>
+
   <% @posts.each do |post| %>
     <%= render partial: 'posts/post', locals: { post: post } %>
   <% end %>
+
+  <p><%= link_to "フォロー", follows_user_path(@user.id) %></p>
+  <p><%= link_to "フォロワー", followers_user_path(@user.id) %></p>
+  <%= render partial: 'follow', locals: { user: @user } %>
+
   <% @like_posts.each do |post| %>
     <p><span>いいね記事: </span><%= link_to post.title, post_path(post.id) %></p>
   <% end %>

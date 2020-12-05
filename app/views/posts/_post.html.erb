@@ -5,11 +5,20 @@
   <li>
     <%= link_to '詳細', post_path(post.id), method: :get %>
   </li>
-  <% if post.liked_by?(current_user) %>
-    <p><span>いいね解除: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :delete %></p>
+
+  <% if user_signed_in? %>
+    <% if post.liked_by?(current_user) %>
+      <p><span>いいね解除: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :delete %></p>
+    <% else %>
+      <p><span>いいね登録: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :post %></p>
+    <% end %>
+
+    <%= render partial: 'users/follow', locals: { user: post.user } %>
+
   <% else %>
-    <p><span>いいね登録: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :post %></p>
+    <p><span>いいね数: </span><%= post.likes.count %></p>
   <% end %>
+
 
   <% if user_signed_in? && current_user.id == post.user_id %>
     <li>
