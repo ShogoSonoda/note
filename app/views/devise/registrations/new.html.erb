@@ -1,15 +1,18 @@
-<h2>新規登録</h2>
-
-<%= form_with model: @user, url: user_registration_path, class: 'registration-main', local: true do |f| %>
+<%= form_with model: @user, url: user_registration_path, class: 'form-signup', local: true do |f| %>
+  <h1 class="h3 mb-3 font-weight-normal">新規登録する</h1>
   <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :nickname %><br />
-    <%= f.text_field :nickname, autofocus: true, autocomplete: "nickname" %>
+  <div class="form-group">
+    <div class="form-text-wrap">
+      <label class="form-text">ニックネーム</label>
+      <span class="indispensable">必須</span>
+    </div>
+      <%= f.text_field :nickname, class:"input-default", id: "nickname", placeholder:"例)そのポン", maxlength:"10" %>
+    </div>
   </div>
 
   <div class="field">
-    <%= f.label :email %><br />
+    <label for="inputEmail" class="sr-only">メールアドレス</label>
     <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
   </div>
 
@@ -27,7 +30,7 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
+    <%= f.submit "新規登録" %>
   </div>
 <% end %>
 
