@@ -1,31 +1,33 @@
-<h2><%= post.title %></h2>
-<h3>投稿者：<%= post.user.nickname %></h3>
-<p><%= post.text %></p>
-<ul>
-  <li>
-    <%= link_to '詳細', post_path(post.id), method: :get %>
-  </li>
+<div class="col bg-light mb-5 p-2">
+  <div>
+    <h1><%= link_to post.title, post_path(post.id), method: :get %></h1>
+  </div>  
+  <div class="">
+    <p><%= post.text %></p>
+  </div>
 
-  <% if user_signed_in? %>
-    <% if post.liked_by?(current_user) %>
-      <p><span>いいね解除: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :delete %></p>
-    <% else %>
-      <p><span>いいね登録: </span><%= link_to post.likes.count, post_likes_path(post.id), method: :post %></p>
-    <% end %>
-
-    <%= render partial: 'users/follow', locals: { user: post.user } %>
-
-  <% else %>
-    <p><span>いいね数: </span><%= post.likes.count %></p>
-  <% end %>
-
-
-  <% if user_signed_in? && current_user.id == post.user_id %>
-    <li>
-      <%= link_to '編集', edit_post_path(post.id), method: :get %>
-    </li>
-    <li>
-      <%= link_to '削除', post_path(post.id), method: :delete %>
-    </li>
-  <% end %>
-</ul>
+  <div class="d-flex justify-content-between">
+    <div class="">
+      <%= link_to "#{post.user.nickname}", user_path(post.user_id) %>
+      <% if user_signed_in? %>
+        <%= render partial: 'users/follow', locals: { user: post.user } %>
+      <% end %>
+    </div>
+    <div class="">
+      <% if user_signed_in? %>
+        <% if post.liked_by?(current_user) %>
+          <div class="">
+            <%= link_to "いいね解除", post_likes_path(post.id), method: :delete, class: "" %>
+          </div>
+        <% else %>
+          <div class="">
+            <%= link_to "いいねする", post_likes_path(post.id), method: :post, class: "" %>
+          </div>
+        <% end %>
+      <% end %>
+      <div class="">
+        <span>いいね数: </span><%= post.likes.count %>
+      </div>
+    </div>
+  </div>
+</div>

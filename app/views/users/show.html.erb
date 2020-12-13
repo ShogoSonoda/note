@@ -1,17 +1,30 @@
-<div class="contents row">
-  <h4><%= link_to "プロフィール編集", edit_user_path(current_user.id) %></h4>
-  <h3>紹介文</h3>
-  <p><%= @user.introduction %></p>
-
-  <% @posts.each do |post| %>
-    <%= render partial: 'posts/post', locals: { post: post } %>
-  <% end %>
-
-  <p><%= link_to "フォロー", follows_user_path(@user.id) %></p>
-  <p><%= link_to "フォロワー", followers_user_path(@user.id) %></p>
-  <%= render partial: 'follow', locals: { user: @user } %>
-
-  <% @like_posts.each do |post| %>
-    <p><span>いいね記事: </span><%= link_to post.title, post_path(post.id) %></p>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <h2><%= @user.nickname %></h2>
+    <p><%= @user.introduction %></p>
+  </div>
+  <div class="row">
+    <%# <p><%= link_to "プロフィール編集", edit_user_path(current_user.id)</p> %> %>
+    <p><span><%= @user.following_ids.count %></span><%= link_to "フォロー", follows_user_path(@user.id) %></p>
+    <p><span><%= @user.follower_ids.count %></span><%= link_to "フォロワー", followers_user_path(@user.id) %></p>
+  </div>
+  <div class="row">
+    <h2>いいねした記事</h2>
+    <% @like_posts.each do |post| %>
+      <p><%= link_to post.title, post_path(post.id) %></p>
+    <% end %>
+  </div>
+  <div class="row d-flex flex-column m-auto">
+    <h2>投稿した記事</h2>
+    <% @posts.each do |post| %>
+      <div class="col bg-light mb-5 p-2">
+        <div>
+          <h1><%= link_to post.title, post_path(post.id), method: :get %></h1>
+        </div>  
+        <div class="">
+          <p><%= post.text %></p>
+        </div>
+      </div>
+    <% end %>
+  </div>
 </div>

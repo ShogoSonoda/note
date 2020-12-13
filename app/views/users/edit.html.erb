@@ -1,9 +1,15 @@
-<%= form_with model: @user do |form| %>
-  <p>名前を変更できます</p>
-  <%= form.text_field :nickname %>
-
-  <p>自己紹介文を入力できます</p>
-  <%= form.text_area :introduction %>
-
-  <%= form.submit "プロフィールの更新" %>
+<div class="row">
+  <%= form_with(model: @user, local: true, method: :put) do |form| %>
+  <div class>
+    <label class="form-label">名前</label>
+    <%= form.text_field :nickname, class: "form-control" %>
+  </div>
+  <div class="">
+    <label class="form-label">自己紹介</label>
+    <%= form.text_area :introduction, class: "form-control" %>
+  </div>
+  <div class="">
+    <%= form.submit "更新" %>
+  </div>
 <% end %>
+</div>
