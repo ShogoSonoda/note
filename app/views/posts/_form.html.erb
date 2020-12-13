@@ -1,9 +1,17 @@
-<div class="article">
-  <%= form_with(model: post, local: true) do |form| %>
-    <p>タイトル</p>
-    <%= form.text_field :title, placeholder: "タイトル" %>
-    <p>テキスト</p>
-    <%= form.text_area :text, placeholder: "テキスト" %>
-    <%= form.submit "投稿"%>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <%= form_with(model: post, local: true) do |form| %>
+      <div class="">
+        <label class="form-label">タイトル</label>
+        <%= form.text_field :title, placeholder: "タイトルを入力して下さい", class: "form-control" %>
+      </div>
+      <div class="">
+        <label class="form-label">テキスト</label>
+        <%= form.text_area :text, placeholder: "テキストを入力して下さい", class: "form-control", size: "20x10" %>
+      </div>
+      <div class="">
+        <%= form.submit "投稿" %>
+      </div>
+    <% end %>
+  </div>
 </div>
